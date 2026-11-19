@@ -1,0 +1,261 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   CANDID WEDDINGS CO. — DESIGN SYSTEM
+   ----------------------------------------------------------------------------
+   Colour   : warm paper, near-black ink, no accent colours.
+   Type     : Cormorant Garamond (editorial serif, italic accents)
+              DM Sans (modern grotesk for statements, captions, UI)
+   Spacing  : fluid section rhythm (--space-section), 12-col grid, generous gutters
+   ========================================================================== */
+
+@theme {
+  /* Colour ---------------------------------------------------------------- */
+  --color-paper: #f6f5f1;
+  --color-paper-deep: #eeece6;
+  --color-white: #ffffff;
+  --color-ink: #171717;
+  --color-ink-soft: #2b2b29;
+  --color-muted: #5a5a56;
+  --color-line: #d8d8d2;
+  --color-line-strong: #a9a9a2;
+  --color-black: #000000;
+  --color-error: #8a1c1c;
+
+  /* Type families (populated by next/font in layout.tsx) ------------------- */
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-dm-sans), "DM Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* Fluid type scale ------------------------------------------------------- */
+  --text-display: clamp(3.4rem, 1.2rem + 10.5vw, 12.5rem);
+  --text-display--line-height: 0.86;
+  --text-hero: clamp(2.9rem, 1.6rem + 6.2vw, 8.25rem);
+  --text-hero--line-height: 0.92;
+  --text-h1: clamp(2.6rem, 1.7rem + 3.9vw, 5.75rem);
+  --text-h1--line-height: 1;
+  --text-h2: clamp(2.1rem, 1.55rem + 2.3vw, 3.9rem);
+  --text-h2--line-height: 1.05;
+  --text-h3: clamp(1.55rem, 1.3rem + 1vw, 2.3rem);
+  --text-h3--line-height: 1.15;
+  --text-statement: clamp(1.4rem, 1.08rem + 1.35vw, 2.45rem);
+  --text-statement--line-height: 1.3;
+  --text-lead: clamp(1.1rem, 1rem + 0.45vw, 1.4rem);
+  --text-lead--line-height: 1.55;
+  --text-caps: 0.8125rem;
+  --text-caps--line-height: 2;
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--line-height: 1.4;
+
+  /* Letter spacing -------------------------------------------------------- */
+  --tracking-caps: 0.035em;
+  --tracking-eyebrow: 0.22em;
+  --tracking-display: -0.035em;
+
+  /* Breakpoints (Tailwind defaults + an xs for small phones) -------------- */
+  --breakpoint-xs: 25rem; /* 400px */
+  --breakpoint-3xl: 112rem; /* 1792px */
+
+  /* Motion ----------------------------------------------------------------- */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root {
+  --gutter: clamp(1.25rem, 0.6rem + 2.8vw, 4rem);
+  --space-section: clamp(5.5rem, 3.5rem + 9vw, 12rem);
+  --space-block: clamp(3rem, 2rem + 4vw, 6rem);
+  --header-h: 4.5rem;
+  color-scheme: light;
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --header-h: 5.5rem;
+  }
+}
+
+/* ---------------------------------------------------------------- base ---- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    background: var(--color-paper);
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  :focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ----------------------------------------------------------- utilities ---- */
+
+/** Page container — fluid gutters, generous max width. */
+@utility container-x {
+  width: 100%;
+  max-width: 120rem;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+@utility section-y {
+  padding-block: var(--space-section);
+}
+
+/** Editorial uppercase body copy (as used across the reference designs). */
+@utility caps {
+  font-family: var(--font-sans);
+  font-size: var(--text-caps);
+  line-height: var(--text-caps--line-height);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+/** Small spaced label above headings and in captions. */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--text-eyebrow);
+  line-height: var(--text-eyebrow--line-height);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+@utility serif-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/** Underline that draws in on hover — used for secondary text links. */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 0.15em;
+  transition: background-size 0.6s var(--ease-editorial);
+  &:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+}
+
+@utility link-underline-in {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 0.15em;
+  transition: background-size 0.6s var(--ease-editorial);
+  &:hover,
+  &[aria-current="page"] {
+    background-size: 100% 1px;
+  }
+}
+
+/** Soft gradient to keep white type legible over photographs. */
+@utility scrim-bottom {
+  background: linear-gradient(to top, rgb(0 0 0 / 0.55) 0%, rgb(0 0 0 / 0.18) 45%, rgb(0 0 0 / 0) 70%);
+}
+
+@utility scrim-top {
+  background: linear-gradient(to bottom, rgb(0 0 0 / 0.42) 0%, rgb(0 0 0 / 0) 100%);
+}
+
+/* Scroll cue line animation */
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* Native select / date styling ------------------------------------------- */
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--color-ink);
+  box-shadow: 0 0 0 1000px var(--color-paper) inset;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+@keyframes hero-settle {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
+}
