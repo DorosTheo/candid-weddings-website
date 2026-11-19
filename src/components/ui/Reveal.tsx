@@ -12,10 +12,20 @@ type RevealProps = {
   /** Vertical travel in px */
   y?: number;
   as?: "div" | "section" | "li" | "p" | "span" | "figure" | "header";
+  /** Above the fold: CSS animation that runs on first paint (no JS wait). */
+  immediate?: boolean;
 };
 
 /** Gentle fade-and-rise when the element scrolls into view (runs once). */
-export function Reveal({ children, className, delay = 0, y = 28, as = "div" }: RevealProps) {
+export function Reveal({ children, className, delay = 0, y = 28, as = "div", immediate = false }: RevealProps) {
+  if (immediate) {
+    const Tag = as;
+    return (
+      <Tag className={`animate-fade-rise ${className ?? ""}`} style={{ animationDelay: `${delay}s` }}>
+        {children}
+      </Tag>
+    );
+  }
   const Component = m[as];
   return (
     <Component
@@ -50,6 +60,19 @@ export function LineReveal({
   /** false = animate immediately on mount (above-the-fold heroes) */
   inView?: boolean;
 }) {
+  if (!inView) {
+    return (
+      <span className={`block ${className ?? ""}`}>
+        {lines.map((line, i) => (
+          <span key={i} className="block overflow-hidden pb-[0.08em] -mb-[0.08em]">
+            <span className={`animate-line-rise block ${lineClassName ?? ""}`} style={{ animationDelay: `${delay + i * stagger}s` }}>
+              {line}
+            </span>
+          </span>
+        ))}
+      </span>
+    );
+  }
   return (
     <m.span
       className={`block ${className ?? ""}`}

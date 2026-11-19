@@ -19,7 +19,7 @@ export default function ContactPage() {
         <h1 className="font-serif text-h1 font-light tracking-[-0.02em]">
           <LineReveal inView={false} lines={[contactCopy.heading]} />
         </h1>
-        <Reveal delay={0.15}>
+        <Reveal immediate delay={0.15}>
           <p className="caps mx-auto mt-10 max-w-4xl text-ink-soft">{contactCopy.intro}</p>
           <p className="caps mt-6">
             {contactCopy.emailLine}{" "}
@@ -30,7 +30,7 @@ export default function ContactPage() {
         </Reveal>
       </header>
 
-      <Reveal delay={0.25} className="mx-auto mt-16 max-w-[63rem] md:mt-24">
+      <Reveal immediate delay={0.25} className="mx-auto mt-16 max-w-[63rem] md:mt-24">
         <InquiryForm />
       </Reveal>
 

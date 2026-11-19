@@ -62,7 +62,7 @@ export async function Footer() {
 
         <p
           aria-hidden
-          className="mt-[var(--space-block)] select-none whitespace-nowrap text-center font-serif text-[clamp(2.6rem,10.4vw,13rem)] leading-none tracking-[-0.03em]"
+          className="mt-[var(--space-block)] select-none whitespace-nowrap text-center font-serif text-[min(13rem,calc((100vw-2*var(--gutter))/9.4))] leading-none tracking-[-0.03em]"
         >
           Candid <span className="italic">Weddings</span> Co.
         </p>

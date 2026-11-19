@@ -20,7 +20,7 @@ export default function ExperiencePage() {
     <>
       <section className="container-x pt-[calc(var(--header-h)+var(--space-block))] pb-[var(--space-block)]">
         <h1 className="sr-only">The Experience — working with Candid Weddings Co.</h1>
-        <Reveal y={20}>
+        <Reveal immediate y={20}>
           <p className="max-w-[78rem] text-statement tracking-[-0.012em]">{experienceIntro.statement}</p>
         </Reveal>
       </section>

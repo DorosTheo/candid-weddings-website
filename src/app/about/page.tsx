@@ -30,7 +30,7 @@ export default function AboutPage() {
               ]}
             />
           </h1>
-          <Reveal delay={0.25} className="md:col-span-5 md:col-start-8 md:pt-48 lg:col-span-4 lg:col-start-9">
+          <Reveal immediate delay={0.25} className="md:col-span-5 md:col-start-8 md:pt-48 lg:col-span-4 lg:col-start-9">
             <div className="caps space-y-6 text-ink-soft">
               {c.intro.body.map((p) => (
                 <p key={p}>{p}</p>

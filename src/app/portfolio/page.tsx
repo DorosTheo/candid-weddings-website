@@ -36,7 +36,7 @@ export default function PortfolioPage() {
               ]}
             />
           </h1>
-          <Reveal delay={0.3} className="md:col-span-4">
+          <Reveal immediate delay={0.3} className="md:col-span-4">
             <p className="caps text-ink-soft">{portfolioCopy.body}</p>
           </Reveal>
         </div>
