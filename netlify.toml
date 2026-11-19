@@ -7,3 +7,8 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# Next.js runtime (OpenNext adapter): turns SSR, the /api/inquiry route and
+# next/image into Netlify Functions / Image CDN.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
