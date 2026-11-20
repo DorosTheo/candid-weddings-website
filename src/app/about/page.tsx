@@ -18,30 +18,34 @@ export default function AboutPage() {
   return (
     <>
       {/* Opening photograph */}
-      {/* Phones: framed 4:5 crop within the margins. Desktop: edge to edge, filling the screen below the header. */}
+      {/* Opening photograph with the headline set in the sky.
+          Phones: framed 4:5 crop within the margins. Desktop: edge to edge, filling the screen below the header. */}
       <section aria-label="Doros & George" className="container-x pt-(--header-h) md:px-0">
-        <Photo
-          asset={media.foundersWide}
-          preload
-          sizes="100vw"
-          quality={85}
-          ratio="aspect-[4/5] md:aspect-[3/2] md:landscape:aspect-auto md:landscape:h-[calc(100svh-var(--header-h))] md:landscape:min-h-[32rem]"
-          className="mt-6 md:mt-0"
-        />
+        <div className="relative mt-6 md:mt-0">
+          <Photo
+            asset={media.foundersWide}
+            preload
+            sizes="100vw"
+            quality={85}
+            ratio="aspect-[4/5] md:aspect-[3/2] md:landscape:aspect-auto md:landscape:h-[calc(100svh-var(--header-h))] md:landscape:min-h-[32rem]"
+          />
+          <h1 className="absolute inset-x-0 top-[9%] px-6 text-center font-serif text-[clamp(1.6rem,1.1rem+2.4vw,3.6rem)] font-light leading-[1.15] tracking-[-0.015em] text-ink md:top-[13%]">
+            <LineReveal
+              inView={false}
+              delay={0.3}
+              lines={[c.intro.heading, <span key="i" className="italic">{c.intro.italic}</span>]}
+            />
+          </h1>
+        </div>
       </section>
 
-      {/* Large type left, supporting copy right */}
+      {/* Short introduction */}
       <section className="container-x pt-[var(--space-block)] pb-[var(--space-section)]">
-        <div className="grid gap-10 md:grid-cols-12 md:gap-8">
-          <h1 className="font-serif text-h1 font-light leading-[1.1] tracking-[-0.02em] md:col-span-6">
-            <LineReveal inView={false} delay={0.2} lines={[c.intro.heading, <span key="i" className="italic">{c.intro.italic}</span>]} />
-          </h1>
-          <Reveal immediate delay={0.4} className="body-sm space-y-5 text-ink-soft md:col-span-4 md:col-start-9 md:pt-3">
-            {c.intro.body.map((p) => (
-              <p key={p}>{p}</p>
-            ))}
-          </Reveal>
-        </div>
+        <Reveal immediate delay={0.4} className="body-sm mx-auto max-w-xl space-y-5 text-center text-ink-soft">
+          {c.intro.body.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </Reveal>
       </section>
 
       {/* Doros & George */}
