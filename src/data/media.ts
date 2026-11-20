@@ -50,7 +50,13 @@ export const media = {
 
   /* --------------------------------------------------------------- FOUNDERS */
   founders: ph("/images/founders/about-founders.jpg", P, "Doros and George, the photographers and filmmakers behind Candid Weddings Co."),
-  foundersWide: ph("/images/founders/about-founders-wide.jpg", L, "Doros and George photographing a wedding in Cyprus"),
+  foundersWide: {
+    src: "/images/founders/about-founders-wide.jpg",
+    width: 2576,
+    height: 1717,
+    alt: "Doros and George, the photographers behind Candid Weddings Co., standing with their cameras on an open green landscape in Cyprus",
+    focus: "48% 72%",
+  },
   doros: ph("/images/founders/founder-doros.jpg", T, "Portrait of Doros, co-founder of Candid Weddings Co."),
   george: ph("/images/founders/founder-george.jpg", T, "Portrait of George, co-founder of Candid Weddings Co."),
 

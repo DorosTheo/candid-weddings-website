@@ -31,7 +31,7 @@ The homepage's "Selected weddings" use the first three wedding stories marked `f
 | File | Ratio | Used for |
 |---|---|---|
 | `about-founders.jpg` | 4:5 | Homepage "Doros & George" — **genuine photo of you both** |
-| `about-founders-wide.jpg` | 16:9 | About page opening image — the two of you at work |
+| `about-founders-wide.jpg` | 3:2 | About page opening image — ✅ **supplied** (Doros & George with cameras) |
 | `founder-doros.jpg` | 2:3 | About page portrait of Doros |
 | `founder-george.jpg` | 2:3 | About page portrait of George |
 
