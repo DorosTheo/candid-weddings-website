@@ -92,21 +92,12 @@ export function HeaderView({ pathname }: { pathname: string | null }) {
             <ul className="flex items-center gap-8 xl:gap-11">
               {mainNavigation.map((item) => {
                 const active = isActive(pathname, item.href);
-                const isContact = item.href === "/contact";
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       aria-current={active ? "page" : undefined}
-                      className={
-                        isContact
-                          ? `eyebrow rounded-full border px-6 py-3 transition-colors duration-500 ${
-                              overlay
-                                ? "border-white/70 hover:bg-white hover:text-ink"
-                                : "border-ink hover:bg-ink hover:text-paper"
-                            }`
-                          : "eyebrow link-underline-in"
-                      }
+                      className="eyebrow link-underline-in"
                     >
                       {item.label}
                     </Link>

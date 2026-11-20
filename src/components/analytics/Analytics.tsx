@@ -64,7 +64,7 @@ export function Analytics() {
           aria-label="Cookie preferences"
           className="fixed inset-x-3 bottom-3 z-[70] border border-line bg-paper p-5 text-ink shadow-[0_20px_60px_-30px_rgb(0_0_0/0.35)] sm:inset-x-auto sm:right-6 sm:bottom-6 sm:max-w-sm sm:p-6"
         >
-          <p className="caps">
+          <p className="body-sm">
             We use optional cookies to understand how visitors use our site. You can accept or decline.{" "}
             <Link href="/privacy" className="link-underline">
               Privacy

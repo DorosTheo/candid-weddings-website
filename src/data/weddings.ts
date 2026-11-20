@@ -1,10 +1,10 @@
 import { media, sampleWeddingFolders, weddingPlaceholderMedia, type MediaAsset } from "./media";
 
 /**
- * REAL WEDDINGS
+ * WEDDING STORIES (Gallery)
  * ----------------------------------------------------------------------------
- * Each entry automatically gets its own page at /real-weddings/<slug>, a card
- * on the Real Weddings page, a sitemap entry and previous/next navigation.
+ * Each entry automatically gets its own page at /gallery/<slug>, a card
+ * in the Gallery, a sitemap entry and previous/next navigation.
  *
  * TO ADD A WEDDING
  *   1. Create /public/images/weddings/<slug>/ and add cover.jpg, cover-mobile.jpg

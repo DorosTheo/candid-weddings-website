@@ -9,75 +9,47 @@ async function currentYear() {
   return new Date().getFullYear();
 }
 
+/** One quiet band: brand, navigation, contact. */
 export async function Footer() {
   const year = await currentYear();
-
   return (
-    <footer className="bg-paper text-ink">
-      <div className="container-x border-t border-line pt-[var(--space-block)] pb-10">
-        <div className="grid gap-14 md:grid-cols-12 md:gap-8">
-          <div className="md:col-span-5">
-            <p className="font-serif text-h3 leading-tight">
-              Wedding photography &amp; cinematography,
-              <br />
-              <span className="italic">for the moments that matter.</span>
-            </p>
-            <p className="caps mt-6 text-muted">{site.availability}</p>
-          </div>
-
-          <nav aria-label="Footer" className="md:col-span-3 md:col-start-7">
-            <p className="eyebrow mb-5 text-muted">Explore</p>
-            <ul className="grid grid-cols-2 gap-x-6 gap-y-3 md:grid-cols-1">
-              {mainNavigation.map((item) => (
-                <li key={item.href}>
-                  <Link href={item.href} className="caps link-underline-in">
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="md:col-span-3">
-            <p className="eyebrow mb-5 text-muted">Say hello</p>
-            <ul className="space-y-3">
-              <li>
-                <a href={`mailto:${site.email}`} className="caps link-underline-in break-all">
-                  {site.email}
-                </a>
-              </li>
-              <li>
-                <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="caps link-underline-in">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <Link href="/contact" className="caps link-underline-in">
-                  Inquire now
+    <footer className="container-x border-t border-line py-10 text-ink">
+      <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
+        <div>
+          <p className="font-serif text-[1.35rem] italic">Candid Weddings Co.</p>
+          <p className="eyebrow mt-2 text-muted">Cyprus · Worldwide</p>
+        </div>
+        <nav aria-label="Footer">
+          <ul className="flex flex-wrap gap-x-7 gap-y-3">
+            {mainNavigation.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="eyebrow link-underline-in">
+                  {item.label}
                 </Link>
               </li>
-            </ul>
-          </div>
-        </div>
-
-        <p
-          aria-hidden
-          className="mt-[var(--space-block)] select-none whitespace-nowrap text-center font-serif text-[min(13rem,calc((100vw-2*var(--gutter))/9.4))] leading-none tracking-[-0.03em]"
-        >
-          Candid <span className="italic">Weddings</span> Co.
+            ))}
+          </ul>
+        </nav>
+        <ul className="flex flex-col gap-2 md:items-end">
+          <li>
+            <a href={`mailto:${site.email}`} className="body-sm link-underline-in">
+              {site.email}
+            </a>
+          </li>
+          <li>
+            <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="body-sm link-underline-in">
+              Instagram
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className="mt-10 flex flex-wrap justify-between gap-4 text-muted">
+        <p className="eyebrow">
+          © {year} {site.name}
         </p>
-
-        <div className="mt-10 flex flex-col gap-3 border-t border-line pt-6 text-muted sm:flex-row sm:items-center sm:justify-between">
-          <p className="eyebrow">
-            © {year} {site.name} — Cyprus / Worldwide
-          </p>
-          <Link href="/privacy" className="eyebrow link-underline-in w-fit">
-            Privacy
-          </Link>
-          <a href="#top" className="eyebrow link-underline-in w-fit">
-            Back to top ↑
-          </a>
-        </div>
+        <Link href="/privacy" className="eyebrow link-underline-in">
+          Privacy
+        </Link>
       </div>
     </footer>
   );

@@ -13,48 +13,34 @@ automatically serves AVIF/WebP at the right size for every screen, so you only
 need one master file per image.
 
 > Tip: keep each image's orientation close to the suggested ratio. Most frames
-> crop with `object-fit: cover`, while gallery images (portfolio and wedding
+> crop with `object-fit: cover`, while gallery images (Gallery photographs and wedding
 > stories) are shown uncropped at whatever ratio you supply.
 
 ## Homepage — `public/images/homepage/`
 
 | File | Ratio | Used for | What to choose |
 |---|---|---|---|
-| `homepage-hero.jpg` | 3:2 landscape | Full-screen opening image (desktop) | Your single strongest, most cinematic frame. Darker lower third keeps the headline legible. |
+| `homepage-hero.jpg` | 3:2 landscape | Full-screen opening image (desktop) | Your single strongest frame. A darker lower third keeps the headline legible. |
 | `homepage-hero-mobile.jpg` | 9:16 portrait | Opening image on phones | A vertical crop or a different vertical frame. |
-| `homepage-intro-01.jpg` | 2:3 portrait | Brand introduction | A quiet, candid moment. |
-| `homepage-intro-02.jpg` | 3:2 landscape | Brand introduction | Laughter / guests / atmosphere. |
-| `homepage-photography.jpg` | 4:5 portrait | “Photography” service | An editorial portrait. |
-| `homepage-film-poster.jpg` | 16:9 landscape | Film poster (play button appears when a film URL is added) | A still from your showreel. |
-| `homepage-experience.jpg` | 2:3 portrait | “The Experience” section | Couple, relaxed and natural. |
-| `homepage-final-cta.jpg` | 2:1 wide | “Your story deserves…” banner (also reused on several page endings) | Atmospheric, darker image; white text sits on top. |
-| `homepage-storytelling.jpg` | 4:5 | Reserved (not currently displayed) | — |
+| `homepage-film-poster.jpg` | 16:9 | Showreel poster (Gallery → Film) | A still from your showreel. |
+
+The homepage's "Selected weddings" use the first three wedding stories marked `featured: true`.
 
 ## Founders — `public/images/founders/`
 
 | File | Ratio | Used for |
 |---|---|---|
-| `about-founders.jpg` | 4:5 | Homepage “Two perspectives” section — **genuine photo of Doros & George together** |
-| `about-founders-wide.jpg` | 21:9 / 16:9 | About page opening image — Doros & George at work |
-| `founder-doros.jpg` | 2:3 | About → “Meet us” — portrait of Doros |
-| `founder-george.jpg` | 2:3 | About → “Meet us” — portrait of George |
+| `about-founders.jpg` | 4:5 | Homepage "Doros & George" — **genuine photo of you both** |
+| `about-founders-wide.jpg` | 16:9 | About page opening image — the two of you at work |
+| `founder-doros.jpg` | 2:3 | About page portrait of Doros |
+| `founder-george.jpg` | 2:3 | About page portrait of George |
 
-## About — `public/images/about/`
-
-| File | Ratio | Used for |
-|---|---|---|
-| `about-creative-background.jpg` | 4:5 | “Our creative background” — fashion-led editorial frame |
-| `about-approach-01.jpg` | 3:2 | “Our approach” — candid moment |
-| `about-approach-02.jpg` | 2:3 | “Our approach” — natural portrait |
-| `about-philosophy.jpg` | 2:1 | “Our philosophy” — wide, full-bleed |
-| `about-storytelling.jpg` | 3:2 | “Our passion for storytelling” — ideally a film still |
-
-## Real Weddings hub — `public/images/weddings/`
+## About & Experience
 
 | File | Ratio | Used for |
 |---|---|---|
-| `real-weddings-hero.jpg` | 2:1 wide | Hero (displayed in black & white automatically) |
-| `real-weddings-hero-mobile.jpg` | 9:16 | Hero on phones |
+| `about/about-approach.jpg` | 3:2 | About → "Our approach" — a candid moment |
+| `experience/experience-process.jpg` | 4:5 | The Experience — image beside the 4 steps |
 
 ## Wedding stories — `public/images/weddings/<slug>/`
 
@@ -66,28 +52,20 @@ The four sample stories (`wedding-story-01` … `04`) are placeholders named
 (the file explains how). Until `placeholder: false` is set, a story is hidden
 from Google (`noindex`) and excluded from the sitemap.
 
-## Portfolio — `public/images/portfolio/`
+## Gallery photographs — `public/images/gallery/`
 
-`portfolio-01.jpg` … `portfolio-18.jpg` — your best photographs, in display
-order. Any orientation works; very wide images (≥ 1.7:1) are shown full-width
-automatically. Add or remove files and update the list in `src/data/media.ts`
-(`portfolioShapes`) or replace `portfolioImages` in `src/data/portfolio.ts`
-with a hand-written list.
-
-## Experience & contact
-
-| File | Ratio | Used for |
-|---|---|---|
-| `experience/experience-process.jpg` | 2:3 | Experience page, sticky image beside the 4 steps |
-| `experience/experience-closing.jpg` | 2:1 | Experience page closing image |
-| `contact/contact.jpg` | 3:2 | Reserved (not currently displayed) |
+`photo-01.jpg` … `photo-18.jpg` — your best photographs for Gallery →
+Photographs, in display order. Any orientation works; very wide images
+(≥ 1.7:1) are shown full-width automatically. Add or remove files and update
+the list in `src/data/media.ts` (`photoShapes`), or replace `galleryPhotos` in
+`src/data/gallery.ts` with a hand-written list.
 
 ## Films
 
 No film URLs have been provided yet, so film frames show the poster image
 without a play button. To enable playback, paste a Vimeo or YouTube URL:
 
-- Showreel (homepage + portfolio): `showreel.url` in `src/data/weddings.ts`
+- Showreel (Gallery → Film): `showreel.url` in `src/data/weddings.ts`
 - Per-wedding film: `film: { url: "https://vimeo.com/…", poster: … }` on each wedding
 
 Self-hosted MP4s can go in `public/videos/` (e.g. `/videos/homepage/showreel.mp4`),

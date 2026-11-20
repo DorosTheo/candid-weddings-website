@@ -112,10 +112,10 @@ export function MobileMenu({ open, onClose, pathname }: { open: boolean; onClose
           >
             <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
               <div className="space-y-2">
-                <a href={`mailto:${site.email}`} className="caps link-underline block w-fit">
+                <a href={`mailto:${site.email}`} className="body-sm link-underline block w-fit">
                   {site.email}
                 </a>
-                <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="caps link-underline block w-fit">
+                <a href={site.instagram.url} target="_blank" rel="noopener noreferrer" className="body-sm link-underline block w-fit">
                   Instagram {site.instagram.handle}
                 </a>
               </div>

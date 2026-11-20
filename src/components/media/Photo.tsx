@@ -1,7 +1,6 @@
 import Image from "next/image";
 import type { MediaAsset } from "@/data/media";
 import { ImageReveal } from "./ImageReveal";
-import { Parallax } from "./Parallax";
 
 type PhotoProps = {
   asset: MediaAsset;
@@ -16,7 +15,6 @@ type PhotoProps = {
   /** Likely visible on load (but not the hero): load immediately, keep the reveal. */
   eager?: boolean;
   reveal?: boolean;
-  parallax?: number;
   quality?: number;
   alt?: string;
 };
@@ -34,7 +32,6 @@ export function Photo({
   preload = false,
   eager = false,
   reveal = true,
-  parallax,
   quality = 82,
   alt,
 }: PhotoProps) {
@@ -52,14 +49,13 @@ export function Photo({
     />
   );
 
-  const framed = parallax ? <Parallax amount={parallax}>{image}</Parallax> : image;
 
   return (
     <div
       className={`relative overflow-hidden bg-paper-deep ${ratio ?? ""} ${className}`}
       style={ratio ? undefined : { aspectRatio: `${asset.width} / ${asset.height}` }}
     >
-      {reveal && !preload ? <ImageReveal>{framed}</ImageReveal> : framed}
+      {reveal && !preload ? <ImageReveal>{image}</ImageReveal> : image}
     </div>
   );
 }

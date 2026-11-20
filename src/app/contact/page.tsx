@@ -20,8 +20,8 @@ export default function ContactPage() {
           <LineReveal inView={false} lines={[contactCopy.heading]} />
         </h1>
         <Reveal immediate delay={0.15}>
-          <p className="caps mx-auto mt-10 max-w-4xl text-ink-soft">{contactCopy.intro}</p>
-          <p className="caps mt-6">
+          <p className="body-sm mx-auto mt-10 max-w-4xl text-ink-soft">{contactCopy.intro}</p>
+          <p className="body-sm mt-6">
             {contactCopy.emailLine}{" "}
             <a href={`mailto:${site.email}`} className="link-underline whitespace-nowrap">
               {site.email}

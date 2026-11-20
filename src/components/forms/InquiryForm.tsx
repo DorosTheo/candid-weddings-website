@@ -53,7 +53,7 @@ function Field({
       {children}
       <label
         htmlFor={id}
-        className={`caps pointer-events-none absolute left-1 origin-left transition-all duration-300 ease-editorial ${
+        className={`body-sm pointer-events-none absolute left-1 origin-left transition-all duration-300 ease-editorial ${
           filled
             ? "top-0 text-[0.6875rem] tracking-[0.12em] text-muted"
             : "top-6 text-muted peer-focus:top-0 peer-focus:text-[0.6875rem] peer-focus:tracking-[0.12em]"
@@ -191,7 +191,7 @@ export function InquiryForm() {
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
           <p className="font-serif text-h1 italic font-light">{contactCopy.success.heading}</p>
-          <p className="caps mx-auto mt-8 max-w-lg text-ink-soft">{contactCopy.success.body}</p>
+          <p className="body-sm mx-auto mt-8 max-w-lg text-ink-soft">{contactCopy.success.body}</p>
           <p className="eyebrow mt-10 text-muted">— Doros &amp; George</p>
         </m.div>
       ) : (
@@ -250,8 +250,8 @@ export function InquiryForm() {
           <div className="md:col-span-2">
             {status === "error" && serverMessage && (
               <div id={`${uid}-server`} role="alert" className="mb-8 border-l border-error pl-5">
-                <p className="caps text-error">{serverMessage}</p>
-                <p className="caps mt-1 text-ink-soft">
+                <p className="body-sm text-error">{serverMessage}</p>
+                <p className="body-sm mt-1 text-ink-soft">
                   You can also email us directly at{" "}
                   <a className="link-underline" href={`mailto:${contactCopy.email}`}>
                     {contactCopy.email}

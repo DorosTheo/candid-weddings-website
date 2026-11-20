@@ -6,8 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages: { path: string; priority: number; changeFrequency: "monthly" | "weekly" | "yearly" }[] = [
     { path: "", priority: 1, changeFrequency: "monthly" },
     { path: "/about", priority: 0.8, changeFrequency: "yearly" },
-    { path: "/portfolio", priority: 0.9, changeFrequency: "monthly" },
-    { path: "/real-weddings", priority: 0.9, changeFrequency: "weekly" },
+    { path: "/gallery", priority: 0.9, changeFrequency: "weekly" },
     { path: "/experience", priority: 0.7, changeFrequency: "yearly" },
     { path: "/contact", priority: 0.8, changeFrequency: "yearly" },
     { path: "/privacy", priority: 0.2, changeFrequency: "yearly" },
@@ -18,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...weddings
       .filter((w) => !w.placeholder)
       .map((w) => ({
-        url: `${site.url}/real-weddings/${w.slug}`,
+        url: `${site.url}/gallery/${w.slug}`,
         priority: 0.7,
         changeFrequency: "yearly" as const,
         images: [`${site.url}${w.cover.src}`],

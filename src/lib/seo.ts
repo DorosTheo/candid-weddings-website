@@ -98,7 +98,7 @@ export function weddingJsonLd(w: Wedding) {
     "@type": "ImageGallery",
     name: `${w.couple} — ${w.location}`,
     description: w.excerpt,
-    url: `${site.url}/real-weddings/${w.slug}`,
+    url: `${site.url}/gallery/${w.slug}`,
     author: { "@id": `${site.url}/#business` },
     contentLocation: { "@type": "Place", name: w.location },
     image: [w.cover, ...w.gallery.slice(0, 8)].map((img) => `${site.url}${img.src}`),

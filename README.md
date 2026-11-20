@@ -51,12 +51,13 @@ Any Node.js host that supports Next.js 16 also works (Netlify, Render, a VPS wit
 src/
   app/                    Routes (one folder per page) + sitemap, robots, API
     api/inquiry/route.ts  Contact-form endpoint (validation, spam protection, Resend)
-    real-weddings/[slug]  Wedding story template — one page per entry in weddings.ts
+    gallery/              Gallery (weddings / photographs / film tabs)
+    gallery/[slug]        Wedding story template — one page per entry in weddings.ts
   components/
     navigation/           Header, mobile menu, wordmark
     layout/               Footer
     sections/home|shared  Page sections (hero, featured weddings, CTA banner, …)
-    gallery/              Editorial gallery layout engine + lightbox
+    gallery/              Gallery tabs, editorial layout engine + lightbox
     media/                Photo, art-directed hero, parallax, reveal, video facade
     forms/                Inquiry form
     ui/                   Buttons, reveal animations, labels, motion provider
@@ -66,7 +67,7 @@ src/
     copy.ts               Page wording
     media.ts              Image registry (paths, sizes, alt text)
     weddings.ts           Real wedding stories
-    portfolio.ts          Portfolio selection
+    gallery.ts            Gallery photographs selection
     experience.ts         The 4-step process + delivery timeframe
     navigation.ts         Menu
     redirects.ts          301 redirects from old URLs
