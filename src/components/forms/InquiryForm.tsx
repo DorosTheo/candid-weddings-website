@@ -6,6 +6,7 @@ import * as m from "motion/react-m";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { eventTypes, inquirySchema, referralSources, type InquiryField } from "@/lib/inquiry";
 import { trackLead } from "@/lib/analytics";
+import { NETLIFY_FORM_NAME, NETLIFY_FORM_PATH, NETLIFY_HONEYPOT, NETLIFY_SUBJECT, netlifyFieldNames } from "@/lib/netlify-form";
 import { contactCopy } from "@/data/copy";
 import { Button } from "@/components/ui/Button";
 
@@ -77,6 +78,25 @@ function Field({
   );
 }
 
+/** Records the inquiry with Netlify Forms (URL-encoded POST to the static form file). */
+async function submitToNetlify(data: Record<InquiryField, string>, honeypotValue: string) {
+  const body = new URLSearchParams({ "form-name": NETLIFY_FORM_NAME, subject: NETLIFY_SUBJECT, [NETLIFY_HONEYPOT]: honeypotValue });
+  for (const [key, name] of Object.entries(netlifyFieldNames)) {
+    const value = data[key as InquiryField] ?? "";
+    body.append(name, key === "date" && /^\d{4}-\d{2}-\d{2}$/.test(value) ? value.split("-").reverse().join("/") : value);
+  }
+  try {
+    const res = await fetch(NETLIFY_FORM_PATH, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: body.toString(),
+    });
+    return res.ok;
+  } catch {
+    return false;
+  }
+}
+
 export function InquiryForm() {
   const uid = useId();
   const [values, setValues] = useState<Values>(initial);
@@ -139,13 +159,32 @@ export function InquiryForm() {
     setStatus("sending");
     setServerMessage("");
     try {
+      // 1. Server: authoritative validation + spam checks (+ Resend email if configured).
       const res = await fetch("/api/inquiry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...result.data, website: honeypot.current?.value ?? "", startedAt: startedAt.current }),
       });
-      const data = (await res.json().catch(() => ({}))) as { ok?: boolean; error?: string; fieldErrors?: Errors };
-      if (res.ok && data.ok) {
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean;
+        emailed?: boolean;
+        spam?: boolean;
+        error?: string;
+        fieldErrors?: Errors;
+      };
+      if (!res.ok || !data.ok) {
+        if (data.fieldErrors) setErrors(data.fieldErrors);
+        setServerMessage(data.error ?? "We couldn’t send your inquiry right now.");
+        setStatus("error");
+        return;
+      }
+
+      // 2. Netlify Forms: stores the inquiry in the Netlify dashboard and sends
+      //    the email notification. Skipped only for submissions flagged as bots.
+      const recorded = data.spam ? true : await submitToNetlify(result.data, honeypot.current?.value ?? "");
+
+      // Success only when at least one channel actually received the inquiry.
+      if (data.spam || data.emailed || recorded) {
         setStatus("success");
         trackLead(values.eventType);
         requestAnimationFrame(() => {
@@ -154,8 +193,7 @@ export function InquiryForm() {
         });
         return;
       }
-      if (data.fieldErrors) setErrors(data.fieldErrors);
-      setServerMessage(data.error ?? "We couldn’t send your inquiry right now.");
+      setServerMessage("We couldn’t send your inquiry right now.");
       setStatus("error");
     } catch {
       setServerMessage("We couldn’t reach our server. Please check your connection and try again.");

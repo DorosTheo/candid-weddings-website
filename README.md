@@ -23,8 +23,8 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open http://localhost:3000. Without `RESEND_API_KEY` the site works fully,
-but the contact form returns an error rather than a false success.
+Open http://localhost:3000. Locally (without Netlify or a Resend key) the
+contact form shows its error state rather than a false success.
 
 | Command | Purpose |
 |---|---|
@@ -95,14 +95,31 @@ headless CMS:
 - **Payload:** self-hosted inside this Next.js app, no external service.
 - **Contentful / Storyblok:** polished, but more expensive as you grow.
 
-## Contact form
+## Contact form — how inquiries reach you
 
-`POST /api/inquiry`:
+Every inquiry goes through two independent channels. The couple sees
+"Thank you" only when at least one of them confirms receipt; otherwise they
+are shown your email address instead.
 
-- Server-side validation with the same Zod schema the browser uses (`src/lib/inquiry.ts`).
-- Spam protection: hidden honeypot field, minimum fill time, same-origin check, per-IP rate limit (5 per 10 minutes), 20 KB body cap.
-- All user input is HTML-escaped in the email. The couple's address is set as **Reply-To**, so you can answer directly from your inbox.
-- Success is shown **only** when Resend confirms the email was accepted. Otherwise the visitor sees an error with a direct email link.
+1. **Netlify Forms (works with no API keys).** Each inquiry is stored under
+   Netlify → your project → **Forms → wedding-inquiry**, spam-filtered, and
+   emailed to you once you add a notification:
+   **Forms → Form notifications → Add notification → Email notification**,
+   form `wedding-inquiry`. The recipient must be a member of your Netlify team:
+   use your Netlify login email, or invite `info@candidweddingsco.com` to the
+   team first. Notification emails come from `formresponses@netlify.com`, with
+   Reply-To set to the couple's address.
+2. **Resend (optional, nicer formatted email).** Set `RESEND_API_KEY` and
+   `CONTACT_FROM_EMAIL` (sender on a domain verified in Resend), then redeploy.
+
+Server route `POST /api/inquiry` validates every submission with the same Zod
+schema the browser uses (`src/lib/inquiry.ts`). Spam protection: honeypot,
+minimum fill time, same-origin check, per-IP rate limit (5 per 10 minutes),
+20 KB body cap, plus Netlify's Akismet filtering. The Netlify form definition
+lives in `src/lib/netlify-form.ts`; `public/__forms.html` is generated from it
+before every build — don't edit it by hand.
+
+> If an inquiry seems to be missing, check **Forms → Spam submissions** first.
 
 ## Analytics & consent
 

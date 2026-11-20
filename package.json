@@ -9,7 +9,9 @@
     "lint": "eslint",
     "placeholders": "node scripts/generate-placeholders.ts",
     "og": "node scripts/generate-og.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prebuild": "node scripts/generate-forms-html.ts",
+    "forms": "node scripts/generate-forms-html.ts"
   },
   "dependencies": {
     "lucide-react": "^1.76.0",
