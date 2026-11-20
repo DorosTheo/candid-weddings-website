@@ -34,8 +34,12 @@ export default function AboutPage() {
               inView={false}
               delay={0.3}
               lines={[
-                <span key="l" className="eyebrow block text-ink/80">More than photos &amp; videos</span>,
-                <span key="i" className="mt-3 block font-serif text-[clamp(1.35rem,1.15rem+0.9vw,2.1rem)] font-light italic leading-tight">{c.intro.italic}</span>,
+                <span key="d" className="block font-brand text-[clamp(1.55rem,1.05rem+2.3vw,3.4rem)] leading-[1.05] tracking-[0.01em] uppercase">
+                  More than photos &amp; videos
+                </span>,
+                <span key="s" className="mt-4 block text-[clamp(0.6rem,0.55rem+0.2vw,0.75rem)] font-normal tracking-[0.32em] uppercase md:mt-5">
+                  {c.intro.italic.replace(/\.$/, "")}
+                </span>,
               ]}
             />
           </h1>

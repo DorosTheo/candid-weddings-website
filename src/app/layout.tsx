@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import { Cormorant_Garamond, DM_Sans, Italiana } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import { site } from "@/data/site";
@@ -15,6 +15,14 @@ const serif = Cormorant_Garamond({
   weight: ["300", "400", "500"],
   style: ["normal", "italic"],
   variable: "--font-cormorant",
+  display: "swap",
+});
+
+/** High-contrast display face for brand headlines (matches the "Lunéra" reference). */
+const display = Italiana({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-italiana",
   display: "swap",
 });
 
@@ -55,7 +63,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" id="top" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="en" id="top" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
       <body>
         <a
           href="#main"
