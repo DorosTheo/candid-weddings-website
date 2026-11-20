@@ -29,11 +29,14 @@ export default function AboutPage() {
             quality={85}
             ratio="aspect-[4/5] md:aspect-[3/2] md:landscape:aspect-auto md:landscape:h-[calc(100svh-var(--header-h))] md:landscape:min-h-[32rem]"
           />
-          <h1 className="absolute inset-x-0 top-[9%] px-6 text-center font-serif text-[clamp(1.6rem,1.1rem+2.4vw,3.6rem)] font-light leading-[1.15] tracking-[-0.015em] text-ink md:top-[13%]">
+          <h1 className="absolute inset-x-0 top-[10%] px-6 text-center text-ink md:top-[13%]">
             <LineReveal
               inView={false}
               delay={0.3}
-              lines={[c.intro.heading, <span key="i" className="italic">{c.intro.italic}</span>]}
+              lines={[
+                <span key="l" className="eyebrow block text-ink/80">More than photos &amp; videos</span>,
+                <span key="i" className="mt-3 block font-serif text-[clamp(1.35rem,1.15rem+0.9vw,2.1rem)] font-light italic leading-tight">{c.intro.italic}</span>,
+              ]}
             />
           </h1>
         </div>
