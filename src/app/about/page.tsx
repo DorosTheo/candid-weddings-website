@@ -18,14 +18,15 @@ export default function AboutPage() {
   return (
     <>
       {/* Opening photograph */}
-      <section aria-label="Doros & George" className="container-x pt-(--header-h)">
+      {/* Phones: framed 4:5 crop within the margins. Desktop: edge to edge, filling the screen below the header. */}
+      <section aria-label="Doros & George" className="container-x pt-(--header-h) md:px-0">
         <Photo
           asset={media.foundersWide}
           preload
           sizes="100vw"
           quality={85}
-          ratio="aspect-[4/5] sm:aspect-[3/2]"
-          className="mt-6 md:mt-10"
+          ratio="aspect-[4/5] md:aspect-[3/2] md:landscape:aspect-auto md:landscape:h-[calc(100svh-var(--header-h))] md:landscape:min-h-[32rem]"
+          className="mt-6 md:mt-0"
         />
       </section>
 
