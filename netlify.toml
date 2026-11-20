@@ -1,0 +1,14 @@
+# Netlify build configuration (overrides dashboard build settings).
+# The Next.js runtime (OpenNext adapter) is applied automatically and provides
+# the server functions for the contact form API and image optimisation.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Next.js runtime (OpenNext adapter): turns SSR, the /api/inquiry route and
+# next/image into Netlify Functions / Image CDN.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
